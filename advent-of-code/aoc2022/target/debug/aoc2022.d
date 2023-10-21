@@ -1,1 +1,1 @@
-/home/vinarius/source/vin/rust-stuff/advent-of-code/aoc2022/target/debug/aoc2022: /home/vinarius/source/vin/rust-stuff/advent-of-code/aoc2022/src/main.rs
+/home/vinarius/source/vin/rust-stuff/advent-of-code/aoc2022/target/debug/aoc2022: /home/vinarius/source/vin/rust-stuff/advent-of-code/aoc2022/src/days/day1.rs /home/vinarius/source/vin/rust-stuff/advent-of-code/aoc2022/src/days.rs /home/vinarius/source/vin/rust-stuff/advent-of-code/aoc2022/src/main.rs
