@@ -1,6 +1,13 @@
 use std::fs::read_to_string;
 
 pub fn run() {
+    part1();
+    part2();
+}
+
+fn part1() {
+    println!("Running day 1 part 1");
+
     let input = read_to_string("input/day1.txt").unwrap();
     let mut totals: Vec<i32> = Vec::new();
     let mut total: i32 = 0;
@@ -17,21 +24,11 @@ pub fn run() {
         }
     }
 
-    println!("totals: {:?}", totals);
+    let max_calorie_count = totals.iter().max().unwrap();
 
-    let mut max_pos = 0;
+    println!("The elf with the most calories is carrying {max_calorie_count} calories");
+}
 
-    for i in 0..totals.len() {
-        println!("i: {}, totals[i]: {}", i, totals[i]);
-
-        if totals[i] > totals[max_pos] {
-            max_pos = i;
-        }
-    }
-
-    println!("Max: {}", totals[max_pos]);
-
-    max_pos += 1;
-
-    println!("Max pos: {}", max_pos);
+fn part2() {
+    println!("Running day 1 part 2");
 }
