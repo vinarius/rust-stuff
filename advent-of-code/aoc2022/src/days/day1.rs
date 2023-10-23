@@ -1,8 +1,6 @@
 use std::fs::read_to_string;
 
 pub fn run() {
-    println!("Day 1 executed");
-
     let input = read_to_string("input/day1.txt").unwrap();
     let mut totals: Vec<i32> = Vec::new();
     let mut total: i32 = 0;
@@ -19,10 +17,21 @@ pub fn run() {
         }
     }
 
-    totals.push(total);
+    println!("totals: {:?}", totals);
 
-    // TODO: get position, not value
-    let max = totals.iter().max().unwrap();
+    let mut max_pos = 0;
 
-    println!("max: {max}");
+    for i in 0..totals.len() {
+        println!("i: {}, totals[i]: {}", i, totals[i]);
+
+        if totals[i] > totals[max_pos] {
+            max_pos = i;
+        }
+    }
+
+    println!("Max: {}", totals[max_pos]);
+
+    max_pos += 1;
+
+    println!("Max pos: {}", max_pos);
 }
