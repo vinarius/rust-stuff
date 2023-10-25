@@ -2,6 +2,9 @@ use std::fs::read_to_string;
 
 pub fn run() {
     let totals = part1();
+
+    println!();
+
     part2(totals);
 }
 
@@ -51,13 +54,13 @@ fn part2(totals: Vec<i32>) {
 
         for j in 0..top_three_totals.len() {
             if total > top_three_totals[j] {
-                println!("1 top_three_totals: {top_three_totals:?}");
-                println!("total: {total}");
+                // println!("1 top_three_totals: {top_three_totals:?}");
+                // println!("total: {total}");
                 top_three_totals[j] = total;
-                println!("2 top_three_totals: {top_three_totals:?}");
+                // println!("2 top_three_totals: {top_three_totals:?}");
                 top_three_totals.sort();
-                println!("3 top_three_totals: {top_three_totals:?}");
-                println!();
+                // println!("3 top_three_totals: {top_three_totals:?}");
+                // println!();
                 break;
             }
         }
@@ -65,7 +68,6 @@ fn part2(totals: Vec<i32>) {
 
     // println!("top_three_totals: {top_three_totals:?}");
 
-    // 204869 - too high
     let calorie_count_of_top_3: i32 = top_three_totals.iter().sum();
 
     println!("The top three elves are together carrying {calorie_count_of_top_3} calories.");
