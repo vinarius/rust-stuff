@@ -51,14 +51,14 @@ fn part2(totals: Vec<i32>) {
 
         for j in 0..top_three_totals.len() {
             if total > top_three_totals[j] {
-                // println!("1 top_three_totals: {top_three_totals:?}");
-                // println!("total: {total}");
+                println!("1 top_three_totals: {top_three_totals:?}");
+                println!("total: {total}");
                 top_three_totals[j] = total;
-                // println!("2 top_three_totals: {top_three_totals:?}");
+                println!("2 top_three_totals: {top_three_totals:?}");
                 top_three_totals.sort();
-                // println!("3 top_three_totals: {top_three_totals:?}");
-                // println!();
-                continue;
+                println!("3 top_three_totals: {top_three_totals:?}");
+                println!();
+                break;
             }
         }
     }
