@@ -27,19 +27,19 @@ fn get_score_for_round(opponent_move: &PlayerInput, player_move: &PlayerInput) -
     let outcome = match player_move {
         PlayerInput::X => match opponent_move {
             PlayerInput::A => Outcome::Tie,
-            PlayerInput::B => Outcome::Win,
-            PlayerInput::C => Outcome::Loss,
-            _ => panic!("Invalid input"),
-        },
-        PlayerInput::Y => match opponent_move {
-            PlayerInput::A => Outcome::Loss,
-            PlayerInput::B => Outcome::Tie,
+            PlayerInput::B => Outcome::Loss,
             PlayerInput::C => Outcome::Win,
             _ => panic!("Invalid input"),
         },
-        PlayerInput::Z => match opponent_move {
+        PlayerInput::Y => match opponent_move {
             PlayerInput::A => Outcome::Win,
-            PlayerInput::B => Outcome::Loss,
+            PlayerInput::B => Outcome::Tie,
+            PlayerInput::C => Outcome::Loss,
+            _ => panic!("Invalid input"),
+        },
+        PlayerInput::Z => match opponent_move {
+            PlayerInput::A => Outcome::Loss,
+            PlayerInput::B => Outcome::Win,
             PlayerInput::C => Outcome::Tie,
             _ => panic!("Invalid input"),
         },
