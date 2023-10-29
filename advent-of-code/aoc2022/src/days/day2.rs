@@ -1,12 +1,18 @@
 use std::fs::read_to_string;
 
 pub fn run() {
-    part1();
+    let input = read_to_string("input/day2.txt").unwrap();
+
+    part1(&input);
+
+    println!();
+
+    part2(&input);
 }
 
 // opponent is A-C, player is X-Z
 #[derive(Debug)]
-enum PlayerInput {
+enum Input {
     A,
     B,
     C,
@@ -21,73 +27,131 @@ enum Outcome {
     Tie,
 }
 
-fn get_score_for_round(opponent_move: &PlayerInput, player_move: &PlayerInput) -> i32 {
-    let mut score = 0;
-
-    let outcome = match player_move {
-        PlayerInput::X => match opponent_move {
-            PlayerInput::A => Outcome::Tie,
-            PlayerInput::B => Outcome::Loss,
-            PlayerInput::C => Outcome::Win,
-            _ => panic!("Invalid input"),
-        },
-        PlayerInput::Y => match opponent_move {
-            PlayerInput::A => Outcome::Win,
-            PlayerInput::B => Outcome::Tie,
-            PlayerInput::C => Outcome::Loss,
-            _ => panic!("Invalid input"),
-        },
-        PlayerInput::Z => match opponent_move {
-            PlayerInput::A => Outcome::Loss,
-            PlayerInput::B => Outcome::Win,
-            PlayerInput::C => Outcome::Tie,
-            _ => panic!("Invalid input"),
-        },
-        _ => panic!("Invalid input"),
-    };
-
-    match outcome {
-        Outcome::Win => score += 6,
-        Outcome::Tie => score += 3,
-        Outcome::Loss => (),
-    }
-
-    match player_move {
-        PlayerInput::X => score += 1,
-        PlayerInput::Y => score += 2,
-        PlayerInput::Z => score += 3,
-        _ => (),
-    }
-
-    score
-}
-
-fn part1() {
+fn part1(input: &str) {
     println!("Running day 2 part 2");
-    let input = read_to_string("input/day2.txt").unwrap();
     let mut total_score = 0;
 
     for game in input.lines() {
-        let split: Vec<PlayerInput> = game
+        let split: Vec<Input> = game
             .split_whitespace()
             .map(|x| match x {
-                "A" => PlayerInput::A,
-                "B" => PlayerInput::B,
-                "C" => PlayerInput::C,
-                "X" => PlayerInput::X,
-                "Y" => PlayerInput::Y,
-                "Z" => PlayerInput::Z,
+                "A" => Input::A,
+                "B" => Input::B,
+                "C" => Input::C,
+                "X" => Input::X,
+                "Y" => Input::Y,
+                "Z" => Input::Z,
                 _ => panic!("Invalid input"),
             })
             .collect();
 
-        let opponent_move = split.get(0).unwrap_or(&PlayerInput::A);
-        let player_move = split.get(1).unwrap_or(&PlayerInput::X);
+        let opponent_move = split.get(0).unwrap_or(&Input::A);
+        let player_move = split.get(1).unwrap_or(&Input::X);
+        let mut score = 0;
 
-        total_score += get_score_for_round(opponent_move, player_move);
+        let outcome = match player_move {
+            Input::X => match opponent_move {
+                Input::A => Outcome::Tie,
+                Input::B => Outcome::Loss,
+                Input::C => Outcome::Win,
+                _ => panic!("Invalid input"),
+            },
+            Input::Y => match opponent_move {
+                Input::A => Outcome::Win,
+                Input::B => Outcome::Tie,
+                Input::C => Outcome::Loss,
+                _ => panic!("Invalid input"),
+            },
+            Input::Z => match opponent_move {
+                Input::A => Outcome::Loss,
+                Input::B => Outcome::Win,
+                Input::C => Outcome::Tie,
+                _ => panic!("Invalid input"),
+            },
+            _ => panic!("Invalid input"),
+        };
+
+        match outcome {
+            Outcome::Win => score += 6,
+            Outcome::Tie => score += 3,
+            Outcome::Loss => (),
+        }
+
+        match player_move {
+            Input::X => score += 1,
+            Input::Y => score += 2,
+            Input::Z => score += 3,
+            _ => (),
+        }
+
+        total_score += score;
     }
 
     println!("Total score: {}", total_score);
-    // 10814 too low
+    // 11150
 }
 
+fn part2(input: &str) {
+    println!("Running day 2 part 2");
+
+    let mut total_score = 0;
+
+    for game in input.lines() {
+        let split: Vec<Input> = game
+            .split_whitespace()
+            .map(|x| match x {
+                "A" => Input::A,
+                "B" => Input::B,
+                "C" => Input::C,
+                "X" => Input::X,
+                "Y" => Input::Y,
+                "Z" => Input::Z,
+                _ => panic!("Invalid input"),
+            })
+            .collect();
+
+        let opponent_move = split.get(0).unwrap_or(&Input::A);
+        let intended_outcome = split.get(1).unwrap_or(&Input::X);
+        let mut score = 0;
+
+        let outcome = match intended_outcome {
+            Input::X => match opponent_move {
+                Input::A => Outcome::Tie,
+                Input::B => Outcome::Loss,
+                Input::C => Outcome::Win,
+                _ => panic!("Invalid input"),
+            },
+            Input::Y => match opponent_move {
+                Input::A => Outcome::Win,
+                Input::B => Outcome::Tie,
+                Input::C => Outcome::Loss,
+                _ => panic!("Invalid input"),
+            },
+            Input::Z => match opponent_move {
+                Input::A => Outcome::Loss,
+                Input::B => Outcome::Win,
+                Input::C => Outcome::Tie,
+                _ => panic!("Invalid input"),
+            },
+            _ => panic!("Invalid input"),
+        };
+
+        match outcome {
+            Outcome::Win => score += 6,
+            Outcome::Tie => score += 3,
+            Outcome::Loss => (),
+        }
+
+        match player_move {
+            Input::X => score += 1,
+            Input::Y => score += 2,
+            Input::Z => score += 3,
+            _ => (),
+        }
+
+        total_score += score;
+    }
+
+    println!("Total score: {}", total_score);
+    // 11150
+}
