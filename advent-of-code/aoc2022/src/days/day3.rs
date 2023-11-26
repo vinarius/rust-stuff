@@ -4,6 +4,10 @@ pub fn run() {
     let input = include_str!("../../input/day3.txt");
 
     part1(&input);
+
+    println!();
+
+    part2(&input);
 }
 
 fn part1(input: &str) -> i32 {
@@ -40,6 +44,48 @@ fn part1(input: &str) -> i32 {
     sum
 }
 
+fn part2(input: &str) -> i32 {
+    println!("Running day 3 part 2");
+
+    let mut sum: i32 = 0;
+    let mut lines = Vec::new();
+
+    for line in input.lines() {
+        lines.push(line);
+    }
+
+    let elf_groups = lines.chunks(3);
+    const ERROR: &str = "problem statement guarantees groups of 3";
+
+    for group in elf_groups {
+        // println!("group: {group:?}");
+
+        let first_elf = group.get(0).expect(ERROR);
+        let second_elf = group.get(1).expect(ERROR);
+        let third_elf = group.get(2).expect(ERROR);
+        let mut candidate = first_elf.chars().next().expect("expected at least 1 character in the elf group");
+
+        for char in first_elf.chars() {
+            if second_elf.contains(&char.to_string()) && third_elf.contains(&char.to_string()) {
+                candidate = char;
+                break;
+            }
+        }
+
+        // println!("candidate: {candidate}");
+
+        let priority = get_priority(candidate as char);
+
+        // println!("priority: {priority}");
+
+        sum += priority as i32;
+    }
+
+    println!("sum: {sum}");
+
+    sum
+}
+
 fn get_priority(item_type: char) -> u8 {
     match item_type {
         'a'..='z' => item_type as u8 - b'a' + 1,
@@ -50,17 +96,22 @@ fn get_priority(item_type: char) -> u8 {
 
 #[cfg(test)]
 mod tests {
-    use super::part1;
+    use super::*;
 
-    #[test]
-    fn part1_test() {
-        let test_input = "vJrwpWtwJgWrhcsFMMfFFhFp
+    const TEST_INPUT: &str = "vJrwpWtwJgWrhcsFMMfFFhFp
 jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
 PmmdzqPrVvPwwTWBwg
 wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
 ttgJtRGJQctTZtZT
 CrZsJsPPZsGzwwsLwLmpwMDw";
 
-        assert_eq!(157, part1(test_input));
+    #[test]
+    fn part1_test() {
+        assert_eq!(157, part1(TEST_INPUT));
+    }
+
+    #[test]
+    fn part2_test() {
+        assert_eq!(70, part2(TEST_INPUT));
     }
 }

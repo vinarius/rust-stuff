@@ -1,13 +1,14 @@
 mod day1;
 mod day2;
 mod day3;
+mod day4;
 
 pub fn run_day(day: u8) {
     match day {
         1 => day1::run(),
         2 => day2::run(),
         3 => day3::run(),
-        4 => todo!(),
+        4 => day4::run(),
         5 => todo!(),
         6 => todo!(),
         7 => todo!(),
