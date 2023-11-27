@@ -4,6 +4,8 @@ pub fn run() {
     part1(INPUT);
 
     println!();
+
+    part2(INPUT);
 }
 
 fn part1(input: &str) -> i32 {
@@ -49,7 +51,7 @@ fn part1(input: &str) -> i32 {
     assignment_pairs_fully_contained
 }
 
-fn part2(_input: &str) {
+fn part2(_input: &str) -> i32 {
     println!("Running day 4 part 2");
 
     todo!();
@@ -69,5 +71,10 @@ mod tests {
     #[test]
     fn test_part1() {
         assert_eq!(2, part1(TEST_INPUT));
+    }
+
+    #[test]
+    fn test_part2() {
+        assert_eq!(4, part2(TEST_INPUT));
     }
 }
