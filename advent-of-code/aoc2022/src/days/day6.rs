@@ -22,6 +22,7 @@ mod tests {
 
     #[test]
     fn test_one() {
+        assert_eq!(part1("mjqjpqmgbljsphdztnvjfqwrcgsmlb"), 7);
         assert_eq!(part1("bvwbjplbgvbhsrlpgdmjqwftvncz"), 5);
         assert_eq!(part1("nppdvjthqldpwncqszvftbrmjlhg"), 6);
         assert_eq!(part1("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), 10);
