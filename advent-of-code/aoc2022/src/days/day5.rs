@@ -144,8 +144,8 @@ fn part1(input: &str) {
     }
 }
 
-fn part2(input: &str) {
-    println!("Running day 5 part 2");
-
-    todo!();
-}
+// fn part2(input: &str) {
+//     println!("Running day 5 part 2");
+//
+//     todo!();
+// }
