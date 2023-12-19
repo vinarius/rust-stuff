@@ -8,12 +8,39 @@ pub fn run() {
     // part2(INPUT);
 }
 
+struct Character {
+    value: char,
+    index: i32,
+}
+
+impl PartialEq for Character {
+    fn eq(&self, other: &Self) -> bool {
+        self.value == other.value
+    }
+}
+
 fn part1(input: &str) -> i32 {
     println!("Running day 6 part 1");
 
-    println!("input: {input}");
+    let mut i = 0;
+    let mut unique_chars: Vec<Character> = vec![];
 
-    todo!();
+    // mjqjpqmgbljsphdztnvjfqwrcgsmlb
+
+    for char in input.chars() {
+        i += 1;
+
+        if !unique_chars.contains(&char) {
+            unique_chars.push(char);
+            j += 1;
+        }
+
+
+    }
+
+    println!("unique_chars: {unique_chars:?}");
+
+    i + 1
 }
 
 #[cfg(test)]
